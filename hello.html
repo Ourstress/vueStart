@@ -1,0 +1,52 @@
+<!-- view video series on https://vuejs.org/v2/guide/ -->
+<!-- try out v-for on an array  -->
+<html>
+  <div id="root">
+    <title>{{product}}</title>
+    <img v-bind:src="image" />
+    <a v-bind:href="externalLink">{{product}}</a>
+
+    <div v-for="item in inventory">
+      <h3>{{item.name}}</h3>
+      <p>{{item.desc}}</p>
+      <p v-show="item.onSale">
+        On sale!!!!! buy now!!! don't wait anymore liao
+      </p>
+      <p v-if="item.inventory > 10">Still a lot</p>
+      <p v-else-if="item.inventory <= 10 && item.inventory > 0">
+        just a few remaining
+      </p>
+      <p v-else="item.inventory == 0">TOO BAD FOR YOU. NO STOCK LIAO</p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    const app = new Vue({
+      el: "#root",
+      data: {
+        product: "socks",
+        externalLink: "https://citrusox.com/",
+        image: "./sock.png",
+        inventory: [
+          {
+            name: "mickey mouse",
+            desc: "mouse who wear red shorts",
+            onSale: true,
+            inventory: 50,
+          },
+          {
+            name: "minnie mouse",
+            desc: "mouse who likes mickey",
+            onSale: false,
+            inventory: 0,
+          },
+        ],
+      },
+    });
+  </script>
+  <style>
+    img {
+      width: 10vw;
+    }
+  </style>
+</html>
